@@ -5,7 +5,7 @@ import Repair from './repair/Main';
 var React = require('react');
 
 var Router = require('react-router');
-var Route = Router.Route;
+var { Route } = Router;
 
 var content = document.getElementById('content');
 
