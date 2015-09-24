@@ -1,48 +1,84 @@
-import React from 'react';
-import LocationStore from '../../stores/LocationStore';
-import LocationActions from '../../actions/LocationActions';
+var React = require('react');
+var AltContainer = require('alt/AltContainer');
+var LocationStore = require('../../stores/LocationStore');
+var FavoritesStore = require('../../stores/FavoritesStore');
+var LocationActions = require('../../actions/LocationActions');
 
-var Locations = React.createClass({
-  getInitialState() {
-    return LocationStore.getState();
-  },
+var Favorites = React.createClass({
+  render() {
+    return (
+      <ul>
+        {this.props.locations.map((location, i) => {
+          return (
+            <li key={i}>{location.name}</li>
+          );
+        })}
+      </ul>
+    );
+  }
+});
 
-  componentDidMount() {
-    LocationStore.listen(this.onChange);
-    LocationActions.fetchLocations();
-  },
-
-  componentWillUnmount() {
-    LocationStore.unlisten(this.onChange);
-  },
-
-  onChange(state) {
-    this.setState(state);
+var AllLocations = React.createClass({
+  addFave(ev) {
+    var location = LocationStore.getLocation(
+      Number(ev.target.getAttribute('data-id'))
+    );
+    LocationActions.favoriteLocation(location);
   },
 
   render() {
-    if (this.state.errorMessage) {
+    if (this.props.errorMessage) {
       return (
-        <div>Something is wrong</div>
+        <div>{this.props.errorMessage}</div>
       );
     }
 
-    if (!this.state.locations.length) {
+    if (LocationStore.isLoading()) {
       return (
         <div>
-          Spinner winner...
+          <img src="ajax-loader.gif" />
         </div>
       );
     }
 
     return (
       <ul>
-        {this.state.locations.map((location) => {
+        {this.props.locations.map((location, i) => {
+          var faveButton = (
+            <button onClick={this.addFave} data-id={location.id}>
+              Favorite
+            </button>
+          );
+
           return (
-            <li>{location.name}</li>
+            <li key={i}>
+              {location.name} {location.has_favorite ? '<3' : faveButton}
+            </li>
           );
         })}
       </ul>
+    );
+  }
+});
+
+var Locations = React.createClass({
+  componentDidMount() {
+    LocationStore.fetchLocations();
+  },
+
+  render() {
+    return (
+      <div>
+        <h1>Locations</h1>
+        <AltContainer store={LocationStore}>
+          <AllLocations />
+        </AltContainer>
+
+        <h1>Favorites</h1>
+        <AltContainer store={FavoritesStore}>
+          <Favorites />
+        </AltContainer>
+      </div>
     );
   }
 });

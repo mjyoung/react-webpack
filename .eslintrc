@@ -18,6 +18,7 @@
     "no-extra-semi": 1,
     "no-underscore-dangle": false,
     "no-unused-vars": 1,
-    "no-console": 1
+    "no-console": 1,
+    "camelcase": 1
   }
 }

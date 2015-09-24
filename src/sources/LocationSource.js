@@ -1,3 +1,5 @@
+var LocationActions = require('../actions/LocationActions');
+
 var mockData = [
   { id: 0, name: 'Abu Dhabi' },
   { id: 1, name: 'Berlin' },
@@ -15,16 +17,29 @@ var mockData = [
 ];
 
 var LocationSource = {
-  fetch: function () {
-    // returning a Promise because that is what fetch does.
-    return new Promise(function (resolve, reject) {
-      // simulate an asynchronous action where data is fetched on
-      // a remote server somewhere.
-      setTimeout(function () {
-        // resolve with some mock data
-        resolve(mockData);
-      }, 250);
-    });
+  fetchLocations() {
+    return {
+      remote() {
+        return new Promise(function (resolve, reject) {
+          // simulate an asynchronous flow where data is fetched on
+          // a remote server somewhere.
+          setTimeout(function () {
+
+            // change this to `false` to see the error action being handled.
+            resolve(mockData);
+          }, 250);
+        });
+      },
+
+      local() {
+        // Never check locally, always fetch remotely.
+        return null;
+      },
+
+      success: LocationActions.updateLocations,
+      error: LocationActions.locationsFailed,
+      loading: LocationActions.fetchLocations
+    };
   }
 };
 

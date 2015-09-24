@@ -1,28 +1,21 @@
-import alt from '../alt';
-import LocationSource from '../sources/LocationSource.js';
+var alt = require('../alt');
 
 class LocationActions {
-  updateLocations (locations) {
+  updateLocations(locations) {
     this.dispatch(locations);
   }
 
-  fetchLocations () {
-    // we dispatch an event here so we can have 'loading' state
+  fetchLocations() {
     this.dispatch();
-    LocationSource.fetch()
-      .then((locations) => {
-        // we can access other actions within our action through `this.actions`
-        this.actions.updateLocations(locations);
-      })
-      .catch((errorMessage) => {
-        this.actions.locationsFailed(errorMessage);
-      });
   }
 
-  locationsFailed (errorMessage) {
+  locationsFailed(errorMessage) {
     this.dispatch(errorMessage);
   }
-}
 
+  favoriteLocation(location) {
+    this.dispatch(location);
+  }
+}
 
 module.exports = alt.createActions(LocationActions);
