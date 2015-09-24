@@ -5,7 +5,7 @@ import App from './App.js';
 import Frame from './frame/Frame.js';
 
 import Repair from './repair/Repair.js';
-import ProductLine from './repair/ProductLine.js';
+import ProductLine from './repair/components/ProductLine.js';
 
 var Router = require('react-router');
 var { Route } = Router;

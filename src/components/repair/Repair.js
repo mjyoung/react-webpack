@@ -2,9 +2,12 @@
 
 var React = require('react/addons');
 var Router = require('react-router');
-import ProductLine from './ProductLine.js';
+import ProductLine from './components/ProductLine.js';
+var AltContainer = require('alt/AltContainer');
+import RepairStore from './stores/RepairStore.js';
+import RepairActions from './actions/RepairActions.js';
 
-require('styles/repair/Repair.scss');
+require('./styles/Repair.scss');
 
 var {
   Route,
@@ -19,10 +22,12 @@ var Repair = React.createClass({
   //mixins: [Router.Navigation],
   render: function () {
     return (
-      <div>
+      <div className="main">
         Repair Content blah blah.
-        <ProductLine/>
-        <RouteHandler/>
+        <AltContainer store={RepairStore}>
+          <ProductLine/>
+          <RouteHandler/>
+        </AltContainer>
       </div>
 
     );

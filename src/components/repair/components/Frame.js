@@ -15,7 +15,7 @@ var {
   } = Router;
 
 // CSS
-require('normalize.css');
+
 
 var Frame = React.createClass({
   render: function() {
