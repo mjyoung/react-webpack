@@ -5,7 +5,7 @@
 // const TestUtils = React.addons.TestUtils;
 
 import createComponent from 'helpers/createComponent';
-import Main from 'components/repair/Main.js';
+import Main from 'components/repair/Locations.js';
 
 describe('Main', () => {
     let MainComponent;
