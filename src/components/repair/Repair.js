@@ -2,20 +2,31 @@
 
 var React = require('react/addons');
 var Router = require('react-router');
+import ProductLine from './ProductLine.js';
 
-require('styles/repair/Main.scss');
+require('styles/repair/Repair.scss');
 
-var Main = React.createClass({
+var {
+  Route,
+  DefaultRoute,
+  NotFoundRoute,
+  RouteHandler,
+  Link
+  } = Router;
 
-  mixins: [Router.Navigation],
+var Repair = React.createClass({
 
+  //mixins: [Router.Navigation],
   render: function () {
     return (
-        <div className="Main">
-          <p>Content for Main!</p>
-        </div>
-      );
+      <div>
+        Repair Content blah blah.
+        <ProductLine/>
+        <RouteHandler/>
+      </div>
+
+    );
   }
 });
 
-module.exports = Main;
+module.exports = Repair;

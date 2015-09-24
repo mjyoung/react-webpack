@@ -11,17 +11,17 @@ var {
   Link
   } = Router;
 
-require('styles/frame/Frame.scss');
+//require('styles/frame/Frame.scss');
 
-var Frame = React.createClass({
+var ProductLine = React.createClass({
 
   render: function () {
     return (
       <div className="main">
-        Frame Content blah blah.
+        Product Line blah blah.
       </div>
     );
   }
 });
 
-module.exports = Frame;
+module.exports = ProductLine;

@@ -9,7 +9,7 @@ describe('GeneratorReactWebpackApp', () => {
     container.id = 'content';
     document.body.appendChild(container);
 
-    GeneratorReactWebpackApp = require('components/GeneratorReactWebpackApp.js');
+    GeneratorReactWebpackApp = require('components/App.js');
     component = React.createElement(GeneratorReactWebpackApp);
   });
 

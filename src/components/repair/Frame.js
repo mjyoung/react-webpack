@@ -2,7 +2,10 @@
 
 var React = require('react/addons');
 var ReactTransitionGroup = React.addons.TransitionGroup;
-import Router from 'react-router';
+var Router = require('react-router');
+import Repair from './repair/Repair.js';
+import Frame from './frame/Frame.js';
+
 var {
   Route,
   DefaultRoute,
@@ -11,15 +14,13 @@ var {
   Link
   } = Router;
 
-require('styles/frame/Frame.scss');
+// CSS
+require('normalize.css');
 
 var Frame = React.createClass({
-
-  render: function () {
+  render: function() {
     return (
-      <div className="main">
-        Frame Content blah blah.
-      </div>
+      ABC123
     );
   }
 });
